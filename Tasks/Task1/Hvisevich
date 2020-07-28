@@ -1,0 +1,5 @@
+summa=20000
+prosent=5
+term =60 # 5 лет
+it_summa=summa*(1+prosent/100/12)**term
+print ('Итоговая сумма равна '+"%.2f" %it_summa+' бел.руб')
