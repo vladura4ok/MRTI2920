@@ -1,5 +1,3 @@
-import math
-
 deposit = 20000
 years = 5
 month = 12
