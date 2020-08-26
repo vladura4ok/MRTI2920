@@ -1,0 +1,12 @@
+def Summa(S, Summ=None):
+    Summ=Summ or 0
+    for i in range(len(S)):
+        if type(S[i])==list:
+            Summ=Summ+Summa(S[i])
+        else:
+            Summ=Summ+S[i]
+    return Summ
+
+S=[1, 2, [2, 4, [[7, 8], 4, 6]]]
+
+print(f"Summ oll elements={Summa(S)}")
