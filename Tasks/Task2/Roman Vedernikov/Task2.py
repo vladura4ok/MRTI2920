@@ -36,7 +36,7 @@ elif m == 30:
 elif m > 30:
     print("Ваше время: без", ip_min.get(m), ip_hour.get(h+1))
 elif m < 30:
-    if m == 1:
+    if m == 1 or m == 21:
         print("Ваше время:", ip_min.get(m), "минута", rp_hour.get(h+1))
     if (21 > m > 5) or (29>m>24):
         print("Ваше время:", ip_min.get(m), "минут", rp_hour.get(h+1))
