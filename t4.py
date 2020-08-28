@@ -1,8 +1,8 @@
 #file = open('test.txt', 'r')
 length = int(input())
 if length > 15:
-    file1 = open('text.txt', 'r')
-    resultFile = open('result.txt', 'w')
+    file1 = open('/home/roman_v/mylab/text.txt', 'r')
+    resultFile = open('/home/roman_v/new_text.txt', 'w')
     for line in file1:
         words = line.split()
         lenSum = 0
