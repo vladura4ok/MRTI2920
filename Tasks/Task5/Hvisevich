@@ -1,0 +1,45 @@
+main.py
+import re
+import second_pros
+regular_exp=r"\((\d*[.]?[\d]?[\d]?.\d*[.]?[\d]?[\d]?)\)"
+
+
+def primary_pricessing(expression:str):
+    k=0
+    if (match := re.search(regular_exp, expression)):
+        expression:str=expression.replace(match.group(0),second_pros.summa(match.group(1)))
+        primary_pricessing(expression)
+    else:
+        while expression !=k:
+            k=second_pros.summa(expression)
+            if expression==k:
+                print (f'Result your expression={expression}')
+                return
+            else:
+                expression=k
+                k=0
+
+    
+
+expression=input('Add your expression: ', )
+primary_pricessing(expression)
+
+
+second_pros.py
+import re
+actions = {
+  "^": lambda x, y: str(float(x)**float(y)),
+  "*": lambda x, y: str(float(x) * float(y)),
+  "/": lambda x, y: str(float(x) / float(y)),
+  "+": lambda x, y: str(float(x) + float(y)),
+  "-": lambda x, y: str(float(x) - float(y))
+}
+regular_exp=r"(\d+(?:\.\d+)?)\s*\{}\s*(-?\d+(?:\.\d+)?)"
+
+def summa (expression):
+    for symbol, action in actions.items():
+        if (match := re.search(regular_exp.format(symbol), expression)):
+            l=match.group(0).split(symbol)
+            s=action(l[0], l[1])
+            expression:str=expression.replace(match.group(0),s)
+    return expression
