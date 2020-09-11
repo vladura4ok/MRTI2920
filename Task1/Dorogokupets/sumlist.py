@@ -1,6 +1,7 @@
 from functools import reduce
 
 l = [1, 2, 3, 4, [5, 6, 7, [8, 9, 10, [100, 200, [300, 400, 45]]]]]
+new_l = l
 
 def extract(my_list):
     for i in range(0, len(my_list)):
@@ -11,6 +12,6 @@ def extract(my_list):
                 my_list.append(i)
                 extract(my_list)
 
-extract(l)
+extract(new_l)
 
-print(reduce(lambda x, y: x + y, l))
+print(reduce(lambda x, y: x + y, l)) 
