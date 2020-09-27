@@ -1,0 +1,61 @@
+def adding_spaces(word_summ,max_number,len_summ):
+    new_word=[]
+    kol=max_number-len_summ
+    kol_spaces=kol//len(word_summ)
+    for i in range(0, len(word_summ)):
+        if kol_spaces==0:
+            if kol>0:
+                new_word.append(word_summ[i]+('  '))
+                kol-=1
+            else:
+                new_word.append(word_summ[i]+(' '))
+        else:
+            new_word.append(word_summ[i]+(kol_spaces*' '))
+    else:
+        return ''.join(new_word)
+
+
+
+
+def work_with_a_string(max_number,file):
+    t=file.read().split()
+    len_summ=0
+    word_summ=[]
+    with open (r'C:\Users\Виталик\Desktop\Pryton files\out_file.txt', 'w')as out_file:
+        for i in range(0, (len(t))):
+            if len(t[i])>max_number:
+                print('wrong argument')
+            elif len(t[i])==max_number:
+                    out_file.write(' '.join(t[i]))
+            elif len(t[i])<max_number:
+                if (len_summ+(len(t[i])+1))<max_number:
+                    len_summ+=(len(t[i])+1)
+                    word_summ.append(t[i])
+                elif (len_summ+(len(t[i])+1))==max_number:
+                    word_summ.append(t[i])
+                    out_file.write(' '.join(word_summ)+"\n")
+                    len_summ=0
+                    word_summ.clear()
+                elif (len_summ+(len(t[i])+1))>max_number:
+                    rez=t[i]
+                    out_file.write(adding_spaces(word_summ,max_number,len_summ)+"\n")
+                    word_summ.clear()
+                    len_summ=0
+                    len_summ=(len(t[i])+1)
+                    word_summ.append(rez)
+        out_file.write(' '.join(word_summ)+"\n")
+                    
+                                      
+    
+
+
+with open (r'C:\Users\Виталик\Desktop\Pryton files\text.txt', 'r', newline='')as output_file:
+    max_number=int(input(f"Enter the number of word:  "  ))
+    if max_number>=15:
+        work_with_a_string(max_number,output_file)
+        print(f"Your file is created,its name out_file.txt")
+    else:
+        print('Enter the number more then 15')
+    
+
+    

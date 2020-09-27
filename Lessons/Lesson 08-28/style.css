@@ -1,0 +1,53 @@
+.header {
+    width: 100%;
+}
+
+.left {
+    width: 25%;
+    float: left;
+}
+
+.center {
+    width: 50%;
+    float: left;    
+}
+
+.right {
+    width: 25%;
+    float: left;
+}
+
+.footer {
+    width: 100%;
+    float: left;
+}
+
+#logo {
+    color: purple;
+    font-style: italic;
+    margin-left: 5%;
+}
+
+.ad {
+    color: red;
+    border: solid;
+    width: 80%;
+    height: 150px;
+}
+
+.post-image {
+    width: 80%;
+}
+
+.content-item {
+    border-bottom: dotted;
+    margin-bottom: 100px;
+}
+
+.content-link {
+    margin-left: 40%;
+}
+
+#copyright {
+    text-align: center;
+}
