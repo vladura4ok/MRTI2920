@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="{% url 'post' post.id %}">
+                        <h1>{{ post.title|capfirst }}</h1>
+                    </a>
+                    <h3>{{ post.subtitle }}</h3>
+                    <img width="100px" src="{{ post.image.url }}">
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
