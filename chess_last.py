@@ -16,20 +16,36 @@ class Figure(object):
     def __repr__(self):
         # вернуть цвет шахматы по ее расположению 0-черный 1-белый 
         return self.IMG[ 0 if self.color == Color.black else 1]
+    def _get_color_(self):
+        return self.color
+
+
 # класс кароль 
 class King(Figure):
     # внешний вид фигуры 
     IMG = ('♔','♚')
 # класс пешка 
 class Pawn(Figure):
-    def move (self, x, y,  x_new, y_new):
-        if y == 2 and self.color == 'white' and y_new > 4:
-            print('fail')
-            return 0
-        if y !=2 and self.color == 'white' and (y_new-y) > 1:
-            print('Fail')
-            return 0
-        return 1
+    def move (self, x, y,  x_new, y_new, move_type):
+
+        if not move_type:
+            if y == 2 and self.color == 'white' and x_new > 4:
+                print('fail')
+                return 0
+            if y !=2 and self.color == 'white' and (x_new-y) > 1:
+                print('Fail1')
+                return 0
+            return 1
+        else:
+            if (self.color == 0 and (x_new == x+1 and (y_new != y+1 or y_new != y-1))) or (self.color == 1 and (x_new == x-1 and (y_new != y+1 or y_new != y-1))):
+                print('Fail2')
+                return 0
+            else: 
+                return 1 
+
+
+
+
     # внешний вид фигуры
     IMG = ('♙', '♟')
 # класс конь
@@ -101,10 +117,10 @@ class Board(object):
         # черный слон 
         self.board[7] [5] = Elephant(0)
         self.board[7] [2] = Elephant(0)
-        
+        print(self.board)
     def play(self):
         while True:
-            a = input("fsdfsd")
+            a = input("Введите: ")
             if a == "stop":
                 break
             a = a.split()
@@ -114,13 +130,17 @@ class Board(object):
             
 
     def move(self, old, new):
-        
-        if self.board[int(old[0])][int(old[1])] == "." :
+        print(self.board[int(new[0])][int(new[1])])
+        if self.board[int(old[0])][int(old[1])] == ".":  
+            print("Error!!!!")
+        move_type = self.board[int(new[0])][int(new[1])] != "."
+        if move_type and self.board[int(new[0])][int(new[1])]._get_color_() == self.board[int(old[0])][int(old[1])]._get_color_() :
             print("Error!!!!")
         else:
-            if self.board[int(old[0])][int(old[1])].move(int(old[0]), int(old[1]), int(new[0]), int(new[1])) :
+            if self.board[int(old[0])][int(old[1])].move(int(old[0]), int(old[1]), int(new[0]), int(new[1]), move_type ) :
                 self.board[int(new[0])][int(new[1])] = self.board[int(old[0])][int(old[1])]
                 self.board[int(old[0])][int(old[1])] = "."
+        
                     
 
                     
@@ -134,9 +154,9 @@ class Board(object):
             # map переводит все содержимое листа в str 
             res += ' '.join(map(str, self.board[y])) + "\n"
         return res
-        
-         
-         
+
+
+
 # вывожу 
 b = Board()
 b.play()
