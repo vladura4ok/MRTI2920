@@ -20,28 +20,41 @@ class Figure(object):
         return self.color
 
 
+
 # класс кароль 
 class King(Figure):
     # внешний вид фигуры 
     IMG = ('♔','♚')
 # класс пешка 
 class Pawn(Figure):
-    def move (self, x, y,  x_new, y_new, move_type):
+    def __init__(self, color):
+        Figure.__init__(self, color)
+        self.init_poz = True 
 
+    def move (self, x, y,  x_new, y_new, move_type):
+        if (self.color == 1 and x_new <= x) or (self.color == 0 and x_new >= x):
+            print('fail5')
+            return 0
         if not move_type:
-            if y == 2 and self.color == 'white' and x_new > 4:
+            if y_new != y:
                 print('fail')
                 return 0
-            if y !=2 and self.color == 'white' and (x_new-y) > 1:
-                print('Fail1')
-                return 0
+            if self.init_poz and abs(x_new -x) >2:
+                print("fail9")
+                return 0 
+            if not self.init_poz and abs(x_new -x) >1:
+                print("fail10")
+                return 0 
+            self.init_poz = False 
             return 1
         else:
-            if (self.color == 0 and (x_new == x+1 and (y_new != y+1 or y_new != y-1))) or (self.color == 1 and (x_new == x-1 and (y_new != y+1 or y_new != y-1))):
-                print('Fail2')
-                return 0
-            else: 
-                return 1 
+            if abs(x_new - x) > 1 and abs(y_new - y) > 1:
+                print("fail32")
+                return 0 
+            return 1 
+
+
+             
 
 
 
@@ -136,11 +149,14 @@ class Board(object):
         move_type = self.board[int(new[0])][int(new[1])] != "."
         if move_type and self.board[int(new[0])][int(new[1])]._get_color_() == self.board[int(old[0])][int(old[1])]._get_color_() :
             print("Error!!!!")
+            
+         
         else:
+            if (self.board[int(old[0])][int(old[1])] == '♙'  or  self.board[int(old[0])][int(old[1])] == '♟') and (self.board[int(old[0]+1)][int(old[1])] == "."):
             if self.board[int(old[0])][int(old[1])].move(int(old[0]), int(old[1]), int(new[0]), int(new[1]), move_type ) :
                 self.board[int(new[0])][int(new[1])] = self.board[int(old[0])][int(old[1])]
                 self.board[int(old[0])][int(old[1])] = "."
-        
+
                     
 
                     
