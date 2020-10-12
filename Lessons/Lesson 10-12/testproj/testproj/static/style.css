@@ -1,0 +1,26 @@
+.logo {
+    padding-left: 2rem;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.content {
+    padding-left: 2rem;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.post-image {
+    width: 40rem;
+}
+
+body {
+    font-family: "Lucida Conaole", Monaco, monospace;
+}
+
+.post-item {
+    border-bottom: solid black 0.5px;
+    padding-bottom: 10px;
+    width: 40rem;
+}
