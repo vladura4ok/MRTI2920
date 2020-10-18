@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+</head>
+<body>
+    <div>
+        <div class="header">
+            <div class="logo">
+                <h1>CompanyName</h1>
+            </div>
+        </div>
+        <div class="content">
+        
+            {% block content%}
+            {% endblock %}
+
+        </div>
+        <div class="footer">
+            <div class="footer-content">
+                <p>Powered by Jango</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

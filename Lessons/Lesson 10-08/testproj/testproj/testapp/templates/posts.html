@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+
+{% block content %}
+<ul>
+    {% for post in posts %}
+        <li class="post-item">
+            <a href="{% url 'post' post.id %}">
+                <h1 class="title">{{ post.title|capfirst }}</h1>
+                <img class="post-image" src="{{ post.image.url }}">
+            </a>
+            <h3>{{ post.subtitle }}</h3>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+        

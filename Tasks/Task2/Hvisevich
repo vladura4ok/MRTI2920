@@ -1,0 +1,102 @@
+import datetime
+def Times (hour, minute):
+Perevod={13:1, 14:2, 15:3, 16:4, 17:5, 18:6, 19:7, 20:8, 21:9, 22:10, 23:11,}
+Hour_sel={1:'один', 2:'два', 3:'три', 4:'четыре', 5:'пять', 6:'шесть', 7:'семь', 8:'восемь', 9:'девять', 10:'десять', 11:'одиннадцать', 12:'двенадцать', 00:'двенадцать'}
+Hour_drob={1:'первого', 2:'второго', 3:'третьего', 4:'четвертого', 5:'пятого', 6:'шестого', 7:'седьмого', 8:'восьмого', 9:'девятого', 10:'десятого', 11:'одиннадцатого', 12:'двенадцатого'}
+minute_sel={1:'одна', 2:'две',3:'три', 4:'четере', 5:'пять', 6:'шесть', 7:'семь', 8:'восемь', 9:'девять', 10:'десять', 11:'одиннадцать', 12:'двенадцать',13:'тринадцать', 14:'четырнадцать',
+15:'пятнадцать',16:'шеснадцать',17:'семнадцать',18:'восемнадцать', 19:'девятнадцать', 20:'двадцать', 21:'двадцать одна',22:'двадцать две', 23:'двадцать три', 24:'двадцать четыре',
+25:'двадцать пять', 26:'двадцать шесть', 27:'двадцать семь', 28:'двадцать восемь', 29:'Двадцать девять',
+30:'тридцать', 31:'тридцать одна', 32:'тридцать две', 33:'тридцать три', 34:'тридцать четыре', 35:'тридцать пять', 36:'тридцать шесть', 37:'тридцать семь',
+38:'тридцать восемь', 39:'тридцать девять', 60:'ноль'}
+hour_name={1:"час", 2:'часа',3:'часов'}
+minute_name={1:'минута',2:'минуты',3:'минут', 4:'ровно', 5:'половина'}
+more_minute_name={40:'двадцати',41:'девятнадцати', 42:'восемнадцати', 43:'семнадцати', 44:'шеснадцати', 45:'пятнадцати',46:'четырнадцати', 47:'тринадцати',
+48:'двенадцати', 49:'одиннадцати', 50:'десяти', 51:'девяти', 52:'восьми', 53:'семи', 54:'шести', 55:'пяти', 56:'четырех', 57:'трех', 58:'двух', 59:'одной'}
+if hour>12:
+hour=Perevod[hour]
+if minute == 00 or minute == 0 :
+end_minute=minute_name[4]
+end_hour=Hour_sel[hour]
+if hour==1:
+end_hour_name = hour_name[1]
+elif hour==2 or hour==3 or hour==4:
+end_hour_name= hour_name[2]
+else:
+end_hour_name= hour_name[3]
+print(f"{end_hour} {end_hour_name} {end_minute}")
+elif minute == 30:
+if hour==12:
+end_hour=Hour_drob[1]
+else:
+end_hour=Hour_drob[hour+1]
+end_minute=minute_name[5]
+print(f"{end_minute} {end_hour}")
+elif minute <40:
+if hour==12:
+end_hour=Hour_drob[1]
+else:
+end_hour=Hour_drob[hour+1]
+if (minute%10)==1:
+end_minute_name=minute_name[1]
+elif (minute%10)==0:
+end_minute_name=minute_name[3]
+elif minute==12 or minute==13 or minute==14:
+end_minute_name=minute_name[3]
+elif (minute%10)==2 or (minute%10)==3 or (minute%10)==4:
+end_minute_name=minute_name[2]
+else:
+end_minute_name= minute_name[3]
+end_minute=minute_sel[minute]
+print(f"{end_minute} {end_minute_name} {end_hour}")
+elif minute>=40:
+end_minute=more_minute_name[minute]
+if hour==0 or hour==00:
+end_hour=hour_name[1]
+elif hour==12:
+end_hour=hour_name[1]
+else:
+end_hour=Hour_sel[hour+1]
+if minute>50:
+if minute==59:
+end_minute_name=minute_name[2]
+print(f"Без {end_minute} {end_minute_name} {end_hour}")
+else:
+end_minute_name=minute_name[3]
+print(f"Без {end_minute} {end_minute_name} {end_hour}")
+else:
+print(f"Без {end_minute} {end_hour}")
+else:
+if hour==0 or hour==00:
+end_hour=Hour_sel[12]
+else:
+end_hour=Hour_sel[hour]
+if hour==1:
+end_hour_name = hour_name[1]
+elif hour==2 or hour==3 or hour==4:
+end_hour_name= hour_name[2]
+else:
+end_hour_name= hour_name[3]
+end_minute=minute_sel[minute]
+end_minute_name=minute_name[3]
+print(f"{end_hour} {end_hour_name} {end_minute} {end_minute_name}")
+t=input("add your time:", )
+now = datetime.datetime.now()
+print (t)
+P=":" in t
+K=" " in t
+if t=="":
+hour= int(now.hour)
+minute= int(now.minute)
+Times(hour,minute)
+elif P==True:
+y=list(t.split(':'))
+hour=int(y[0])
+minute=int(y[1])
+Times(hour,minute)
+elif K==True:
+y=list(t.split(' '))
+hour=int(y[0])
+minute=int(y[1])
+Times(hour,minute)
+elif t.isdigit!=True:
+print("Wrong time")
