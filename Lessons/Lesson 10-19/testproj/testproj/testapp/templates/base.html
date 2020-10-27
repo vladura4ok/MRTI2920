@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+</head>
+<body>
+    <div>
+        <div class="header">
+            <div class="logo">
+                <h1>CompanyName</h1>
+                <div>
+                    {% if user.is_authenticated %}
+                        <p>{{ user.get_username }}</p>
+                        <p>
+                            <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+                        </p>
+                        {% if perms.mytestapp.can_post %}
+                            <p>
+                                <a href="{% url 'logout' %}?next={{ request.path }}">Create a new post</a>
+                            </p>
+                        {% endif %}
+                    {% else %}
+                        <p>
+                            <a href="{% url 'login' %}?next={{ request.path }}">Log in</a>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="content">
+        
+            {% block content%}
+            {% endblock %}
+
+        </div>
+        <div class="footer">
+            <div class="footer-content">
+                <p>Powered by Jango</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
