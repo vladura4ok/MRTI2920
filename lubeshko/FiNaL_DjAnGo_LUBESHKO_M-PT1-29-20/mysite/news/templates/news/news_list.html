@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}::{{ block.super }}
+{% endblock %}
+
+<!--Сайдбар-->
+{% block sidebar %}
+
+
+{% include "inc/_sidebar.html" %}
+
+
+{% endblock %}
+
+<!--КОНТЕНТ-->
+{% block content %}
+
+{#    <div class="col-md-9">#}
+        {% for item in news %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{ forloop.counter }}
+                    Категория: <a href = "{{ item.category.get_absolute_url}}">{{ item.category }}</a>
+                    <!--category Это объект. Но мы не пишем title, тк def __str__(self)-->
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        {% if item.photo %}
+                            <img src="{{ item.photo.url }}" alt="item.title" width="200" class="mr-3">
+                        {% else %}
+                            <img src="https://picsum.photos/id/870/200/200/?grayscale&blur=2" alt="item.title"
+                                 class="mr-3">
+                        {% endif %}
+                        <div class="media-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text">{{ item.content|linebreaks|truncatewords:50 }}</p>
+                            <!--Фильтр с br, Фильтр сокращ. текст-->
+                            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Подробнее...</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer text-muted">
+                    {{ item.created_at|date:"d.m.Y" }}
+                    <p> Время с даты создания: {{ item.created_at|timesince }}
+                        <!--Фильтр прошло Время с даты создания-->
+                    </p>
+                </div>
+            </div>
+        {% endfor %}<p>Всего новостей: {{ news.count }}</p>
+{#    </div>#}
+
+{% endblock %}

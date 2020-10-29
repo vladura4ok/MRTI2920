@@ -1,0 +1,15 @@
+{% load news_tags %} <!--5.Загрузим из new_tags.py наш созданный тег путем написания %load news_tags%-->
+{% lala as categories %}
+
+
+{% for i in categories %}
+    <div class="list-group">
+        <a href="{% url 'category' i.pk %}"
+           class="list-group-item list-group-item-action mb-1 ">{{ i.title }}</a>
+
+    </div>
+{% endfor %}
+<br>
+<br>
+
+{% show_category arg2="tag!!!"%}
