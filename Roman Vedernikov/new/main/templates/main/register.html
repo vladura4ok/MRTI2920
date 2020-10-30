@@ -1,0 +1,21 @@
+{% extends user.is_authenticated|yesno:"main/layout.html,registration/logget_out.html" %}
+{% block title %}Форма регистрации{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+        <div class="features">
+            <p>Для регистрации нужно выйти из действующего аккаунта.</p>
+            <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+        </div>
+{% else %}
+    <div class="reg">
+        <h3>Регистрация</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+<!--            <span>{{ error }}</span><br>-->
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock %}

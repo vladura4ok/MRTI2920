@@ -1,0 +1,167 @@
+body {
+    background: #2c2c2c;
+}
+
+main .entre p {
+    padding: 1%;
+    color: #fff;
+    float: right;
+    width: 80%;
+    border: 5px solid #4d4d4d;
+    border-left: none;
+    text-align: right;
+}
+
+main a {
+    color: yellow;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+main a:hover, aside ul a:hover {
+    color: red;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+aside {
+    float: left;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+    position: fixed;
+}
+
+aside img {
+    width: 80px;
+    float: left;
+}
+
+aside .logo {
+    font-size: 40px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: -5px;
+}
+
+aside h3 {
+    margin-top: 50px;
+    margin-left: 25px;
+    font-size: 30px;
+}
+
+aside ul {list-style: none}
+
+aside ul li {
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+main .features {
+    float: left;
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+    width: 75%;
+    margin-left: 20%;
+}
+
+main .features hi {font-size: 50px;}
+main .features p {max-width: 400px; margin: 20px auto}
+
+
+main .details {
+    float: left;
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+    width: 75%;
+    margin-left: 20%;
+}
+main .details h3 {margin-left: 3%; font-size: 25px; text-align: center; float: center}
+main .details a {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+
+p .news-image  {
+    margin: 10px 15px 5px 10px;
+}
+
+.anonsing {
+    text-align: justify;
+    font-size: 20px;
+    margin: 20px auto;
+    font-style: oblique;
+}
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 75%;
+    margin: 20px 15%;
+    text-align: left;
+}
+
+alert-warning .p {
+    font-size: 40px;
+}
+
+
+form {
+    margin-left: 32%;
+    width: 500px;
+    margin-top: 50px;
+}
+
+main .det {
+    float: left;
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+    width: 80%;
+    margin-left: 20%;
+}
+
+main .det hi {font-size: 50px;}
+main .det p {
+    text-align: justify;
+    font-size: 20px;
+    margin: 20px 30px;
+    font-style: oblique;
+}
+main .det a {
+    margin-bottom: 50px;
+}
+
+main .reg {
+    float: left;
+    color: #fff;
+    margin-top: 10px;
+    text-align: left;
+    width: 80%;
+    margin-left: 30px;
+    }
+
+main .reg h3 {
+    margin-left: 50%;
+    }
+
+main .reg p {
+    font-style: oblique;
+    width: 900px;
+}
