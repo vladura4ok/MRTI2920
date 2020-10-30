@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <div class="det">
+        <h1>{{ article.title }}</h1>
+        <img class="detail-image" src="{{ article.image }}" height="400">
+        <p>{{ article.full_text }}</p>
+        <p>Дата публикации: {{ article.date }}</p>
+        {% if perms.news.can_post or user.get_username == article.author %}
+            <a href="{% url 'news-delete' article.id %}" class="btn btn-danger">Удалить</a>
+            <a href="{% url 'news-update' article.id %}" class="btn btn-info">Изменить</a>
+        {% endif %}
+    </div>
+{% endblock %}
