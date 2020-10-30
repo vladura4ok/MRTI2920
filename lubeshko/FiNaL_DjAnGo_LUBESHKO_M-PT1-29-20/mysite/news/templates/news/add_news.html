@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}::{{ block.super }}
+{% endblock %}
+
+<!--Сайдбар-->
+{% block sidebar %}
+    {% include "inc/_sidebar.html" %}
+{% endblock %}
+
+<!--КОНТЕНТ-->
+{% block content %}
+
+    <h1>Добавьте новость</h1>
+
+    <form action="{% url "add_news" %}" method="post">
+
+
+        {% csrf_token%}
+        {{ form.as_p }}
+
+
+{#        <div class="form-group row">#}
+{#            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>#}
+{#            <div class="col-sm-10">#}
+{#                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">#}
+{#            </div>#}
+{#        </div>#}
+
+
+        <button type="submit" class="btn btn-primary">
+            Добавить новость
+        </button>
+
+
+    </form>
+
+{% endblock %}
