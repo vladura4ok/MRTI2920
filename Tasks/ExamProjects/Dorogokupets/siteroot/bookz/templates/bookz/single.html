@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load sidebar %}
+
+{% block title %}{{ book.title }} :: {{ block.super }}{% endblock %}
+
+{% block content %}
+
+    <section class="bg-text-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg-text">
+                        <h3>страница книги</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="single-blog-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="border-top">
+                        <div class="col-md-8">
+                            <div class="blog-area">
+                                <div class="blog-area-part">
+                                    <h2>{{ book.title }}</h2>
+                                    <div class="single-content">
+                                        <div>
+                                            <span>Раздел: <a
+                                                    href="{{ book.category.get_absolute_url }}">{{ book.category }}</a></span>
+                                            <br>
+                                            <span>Владелец: <a
+                                                    href="{{ book.owner.get_absolute_url }}">{{ book.owner }}</a></span>
+                                            <br>
+                                            {% if book.genres.exists %}
+                                                <span>
+                                            Жанры:
+                                                    {% for genre in book.genres.all %}
+                                                        <a href="{{ genre.get_absolute_url }}">{{ genre.title }}</a>
+                                                    {% endfor %}
+                                        </span>
+                                                <br>
+                                            {% endif %}
+                                            <span>Просмотрено {{ book.views }} раз(а)</span>
+                                         <br>
+                                            <span>E-mail для обратной связи: <a
+                                                    href="{{ book.owner.get_absolute_url }}">{{ book.owner.email }}</a></span>
+                                        </div>
+                                        {{ book.content|safe }}
+                                    </div>
+                                </div>
+
+                                <div class="blog-area-part">
+                                    <h2>Обратная связь</h2>
+                                    <div class="tags">
+                                        <h2 class="sidebar-title">Здесь вы можете написать владельцу</h2>
+                                    </div>
+                                </div>
+                                <form action="#" method="get">
+                                    <!--<div class="name">
+                                        <input type="text" name="" id="" placeholder="Name" class="name">
+                                    </div>
+                                    <div class="email">
+                                        <input type="email" name="" id="" placeholder="Email" class="email">
+                                    </div>-->
+                                    <div class="comment">
+                                        <input type="text" name="" id=""
+                                               placeholder="Отправьте свои координаты владельцу книги" class="comment">
+                                    </div>
+                                    <div class="post">
+                                        <input type="submit" value="Отправить">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+
+                            <div class="newsletter">
+                                <h2 class="sidebar-title">Поиск</h2>
+                                <form action="{% url 'search' %}" method="get">
+                                    <input type="text" name="s" placeholder="Введите название книги">
+                                    <input type="submit" value="Поиск">
+                                </form>
+                            </div>
+
+                            {% get_popular 3 %}
+
+                            {% get_genres %}
+
+                            <!--<div class="newsletter">
+                                <h2 class="sidebar-title">Subscribe To oUR nEWSLETTER</h2>
+                                <form action="#" method="post">
+                                    <input type="email" name="" id="" placeholder="Email">
+                                    <input type="submit" value="Subscribe">
+                                </form>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
